@@ -1,14 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="campus360">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Management App</title>
-</head>
-<body>
-    <h1>CAMPUS 360</h1>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="js/app.js"></script>
 
-    <h4>Total Students: 1200</h4>
-    <h4>Total Faculty: 85</h4>
+    <title>College Dashboard</title>
+</head>
+
+<body ng-controller="dashboardcontroller">
+
+    <input type="text" ng-model="collegename">
+
+
+    <h1>{{collegename}}</h1>
+
+    <input type="text" ng-model="totalstudents">
+
+    <button ng-click="totalstudents = totalstudents + 1">Add Student</button>
+
+    <p>Total Students : {{totalstudents}}</p>
+
+
+    <input type="text" ng-model="totalfaculty">
+
+    <button ng-click="totalfaculty = totalfaculty + 1">Add Faculty</button>
+
+    <p>Total Faculty : {{totalfaculty}}</p>
+
+    <h2>Student List</h2>
+
+    <ul>
+        <li ng-repeat="student in students">
+
+            {{student}}
+
+        </li>
+    </ul>
+
 </body>
+
 </html>
