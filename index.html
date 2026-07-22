@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="node_modules/angular/angular.js"></script>
     <script src="js/app.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 
     <title>College Dashboard</title>
 </head>
@@ -13,32 +14,112 @@
 <body ng-controller="dashboardcontroller">
 
     <input type="text" ng-model="collegename">
-
-
     <h1>{{collegename}}</h1>
 
-    <input type="text" ng-model="totalstudents">
+    <input type="number" ng-model="totalstudents">
+    <button ng-click="totalstudents = totalstudents + 1">
+        Add Student
+    </button>
 
-    <button ng-click="totalstudents = totalstudents + 1">Add Student</button>
+    <p ng-class="{
+        'green': totalstudents >= 1000,
+        'red': totalstudents < 1000
+    }">
+        Total Students : {{totalstudents}}
+    </p>
 
-    <p>Total Students : {{totalstudents}}</p>
+    <input type="number" ng-model="totalfaculty">
+    <button ng-click="totalfaculty = totalfaculty + 1">
+        Add Faculty
+    </button>
 
+    <p ng-style="{
 
-    <input type="text" ng-model="totalfaculty">
+'color' : totalfaculty >= 100 ? 'green' : 'red',
+'font-size' : '25px',
+'font-weight' : 'bold'
 
-    <button ng-click="totalfaculty = totalfaculty + 1">Add Faculty</button>
-
-    <p>Total Faculty : {{totalfaculty}}</p>
+    }">
+        Total Faculty : {{totalfaculty}}</p>
 
     <h2>Student List</h2>
 
-    <ul>
-        <li ng-repeat="student in students">
+    <button ng-click="showstudents = !showstudents">
+        Show/Hide Students
+    </button>
 
-            {{student}}
+    <div ng-if="showDashboard">
+        <ul ng-show="showstudents">
+            <li ng-repeat="student in students">
+                {{student}}
+            </li>
+        </ul>
+    </div>
 
-        </li>
-    </ul>
+    <h2>Filter Demo</h2>
+    <p>uppercase : {{collegename | uppercase}}</p>
+    <p>lowercase : {{collegename | lowercase}}</p>
+    <p>currency : {{fees | currency}}</p>
+    <p>date : {{today | date: 'dd/MM/yyyy'}}</p>
+    <p>number : {{fees | number:2}}</p>
+
+    <hr>
+    <h2>Selected Departments</h2>
+
+    <label>
+        Select Departments:
+    </label>
+
+    <br><br>
+
+    <select ng-model="selectedDepartment" ng-options="department for department in departments"></select>
+
+    <p>Selected Departments:{{selectedDepartment}}</p>
+
+    <hr>
+    <h2>Department Info</h2>
+
+    <div ng-switch="selectedDepartment">
+
+        <div ng-switch-when="CSE">
+            <h3>Computer Science and Engineering</h3>
+            <p>Department of CSE focuses on software engineering, algorithms, artificial intelligence, and computing
+                systems.</p>
+        </div>
+
+        <div ng-switch-when="MCA">
+            <h3>Master of Computer Applications</h3>
+            <p>Department of MCA provides advanced training in modern software design, application development, and
+                system
+                administration.</p>
+        </div>
+
+        <div ng-switch-when="MBA">
+            <h3>Master of Business Administration</h3>
+            <p>Department of MBA focuses on leadership, strategic management, corporate finance, and business analytics.
+            </p>
+        </div>
+
+        <div ng-switch-when="BBA">
+            <h3>Bachelor of Business Administration</h3>
+            <p>Department of BBA equips students with fundamental principles in marketing, human resources, and business
+                operations.</p>
+        </div>
+
+        <div ng-switch-when="EEE">
+            <h3>Electrical and Electronics Engineering</h3>
+            <p>Department of EEE covers power electronics, circuit design, control systems, and renewable energy
+                technologies.</p>
+        </div>
+
+        <div ng-switch-when="IMCA">
+            <h3>Integrated Master of Computer Applications</h3>
+            <p>Department of IMCA offers a comprehensive five-year integrated program combining foundational and
+                advanced
+                computing skills.</p>
+        </div>
+
+    </div>
 
 </body>
 
