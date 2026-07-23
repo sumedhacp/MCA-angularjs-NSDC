@@ -77,6 +77,7 @@
     <p>Selected Departments:{{selectedDepartment}}</p>
 
     <hr>
+
     <h2>Department Info</h2>
 
     <div ng-switch="selectedDepartment">
@@ -120,6 +121,48 @@
         </div>
 
     </div>
+
+    <hr>
+
+    <h2>ng-init demo</h2>
+
+    <div ng-init="collegecode = 'Fisat123'; location = 'Angamaly'">
+
+        <p>College Code : {{collegecode}}</p>
+        <p>Location : {{location}}</p>
+
+    </div>
+
+    <hr>
+
+    <h2>ng-disabled demo</h2>
+
+    <button ng-click="allowAdmission()">
+
+        Enable Admission
+
+    </button>
+    <br><br>
+
+    <button ng-disabled="isDisabled">
+
+        Take Admission
+
+    </button>
+    <br><br>
+
+    <h2>ng-readonly demo</h2>
+    <label>College ID</label>
+
+    <br><br>
+
+    <input type="text" ng-model="" ng-readonly="isReadOnly">
+
+    <br><br>
+
+    <button ng-click="isReadOnly =!isReadOnly">Toggle ReadOnly</button>
+
+    <p>ReadOnly Status : {{isReadOnly}}</p>
 
 </body>
 

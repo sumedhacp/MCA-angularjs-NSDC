@@ -19,7 +19,7 @@ app.controller("dashboardcontroller", function ($scope) {
     $scope.fees = 25600;
     $scope.today = new Date();
 
-    $scope.departments=[
+    $scope.departments = [
 
         "CSE",
         "MCA",
@@ -30,7 +30,23 @@ app.controller("dashboardcontroller", function ($scope) {
 
     ];
 
-$scope.selectedDepartment = "MCA";
+    $scope.selectedDepartment = "MCA";
+
+    $scope.isDisabled = true;
+
+    $scope.allowAdmission = function () {
+
+        $scope.isDisabled = false;
+
+    };
+
+    $scope.isReadOnly = true;
+
+    $scope.toggleReadOnly = function () {
+
+        $scope.isReadOnly = !$scope.isReadOnly;
+
+    };
 
     $scope.addstudent = function () {
 
