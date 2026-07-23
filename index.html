@@ -168,49 +168,128 @@
     <br><br>
 
     <h2>Student Registration</h2>
-    <form name="studentForm">
+    <form name="studentForm" novalidate ng-submit="registerStudent()">
 
         <label>Student Name:</label>
         <br>
-        <input type="text" ng-model="student.name" required>
+        <input type="text" name="studentName" ng-model="student.name" ng-minlength="3" ng-maxlength="20" required>
+        <p ng-show="studentForm.studentName.$touched && studentForm.studentName.$error.required" style="color:red;">
+
+            Student Name is required
+
+        </p>
+
+        <p ng-show="studentForm.studentName.$touched && studentForm.studentName.$error.minlength" style="color:red;">
+
+            minimum 3 character required
+
+        </p>
+
+        <p ng-show="studentForm.studentName.$touched && studentForm.studentName.$error.maxlength" style="color:red;">
+
+            maximum 20 character required
+
+        </p>
+
         <br><br>
 
         <label>Email:</label>:</label>
         <br>
-        <input type="text" ng-model="student.email" required>
+        <input type="text" name="studentEmail" ng-model="student.email" required>
+        <p ng-show="studentForm.studentEmail.$touched && studentForm.studentEmail.$error.required" style="color:red;">
+
+            Email is required
+
+        </p>
+        <p ng-show="studentForm.studentEmail.$touched && studentForm.studentEmail.$error.required" style="color:red;">
+
+            Student Email is required
+
+        </p>
         <br><br>
 
-        
+
         <label>Phone:</label>:</label>
         <br>
-        <input type="tel" ng-model="student.phone" required>
-        <br><br>
+        <input type="number" name="studentPhone" ng-model="student.phone" ng-pattern="/^[0-9]{10}$/" required>
+        <p ng-show="studentForm.studentPhone.$touched && studentForm.studentPhone.$error.required" style="color:red;">
+            Phone number is required.
+        </p>
 
-        
-        <label>Age:</label>:</label>
-        <br>
-        <input type="number" ng-model="student.age" required>
-        <br><br>
-
-        
-        <label>Department:</label>:</label>
-        <br>
-        <input type="text" ng-model="student.department" required>
+        <p ng-show="studentForm.studentPhone.$touched && studentForm.studentPhone.$error.pattern" style="color:red;">
+            Phone number must contain exactly 10 digits.
+        </p>
         <br><br>
 
 
-        <label>Gender:</label>:</label>
+        <label>Age:</label>
         <br>
-        <input type="text" ng-model="student.gender" required>
+        <input type="number" name="studentAge" ng-model="student.age" min="4" max="18" required>
+        <p ng-show="studentForm.studentAge.$touched && studentForm.studentAge.$error.required" style="color:red;">
+            Age is required.
+        </p>
+
+        <p ng-show="studentForm.studentAge.$touched && studentForm.studentAge.$error.min" style="color:red;">
+            Not eligible. Age cannot be less than 4.
+        </p>
+
+        <p ng-show="studentForm.studentAge.$touched && studentForm.studentAge.$error.max" style="color:red;">
+            Not eligible. Age cannot be greater than 18.
+        </p>
+
+        <br><br>
+
+
+        <label>Department:</label>
+        <br>
+        <input type="text" name="studentDepartment" ng-model="student.department" required>
+        <p ng-show="studentForm.studentDepartment.$touched && studentForm.studentDepartment.$error.required"
+            style="color:red;">
+            Dept required.
+        </p>
+        <br><br>
+
+
+        <label>Gender:</label>
+        <br>
+
+        <input type="text" name="studentGender" ng-model="student.gender" ng-pattern="/^(Male|Female)$/i" required>
+
+        <p ng-show="studentForm.studentGender.$touched && studentForm.studentGender.$error.pattern" style="color:red;">
+            Gender must be Male or Female.
+        </p>
         <br><br>
 
 
         <label>Address:</label>:</label>
         <br>
-        <input type="text" ng-model="student.address" required>
+
+        <input type="text" name="studentAddress" ng-model="student.address" ng-minlength="10" ng-maxlength="100"
+            ng-pattern="/^[A-Za-z0-9\s,.\-/#()]+$/" required>
+
+        <p ng-show="studentForm.studentAddress.$touched && studentForm.studentAddress.$error.required"
+            style="color:red;">
+            Address is required.
+        </p>
+
+        <p ng-show="studentForm.studentAddress.$touched && studentForm.studentAddress.$error.minlength"
+            style="color:red;">
+            Address must contain at least 10 characters.
+        </p>
+
+        <p ng-show="studentForm.studentAddress.$touched && studentForm.studentAddress.$error.maxlength"
+            style="color:red;">
+            Address cannot exceed 100 characters.
+        </p>
+
+        <p ng-show="studentForm.studentAddress.$touched && studentForm.studentAddress.$error.pattern"
+            style="color:red;">
+            Invalid address. Only letters, numbers, spaces, and , . - / # ( ) are allowed.
+        </p>
+
         <br><br>
 
-        <button>Register Student </button>
+        <button type="submit">Register Student</button>
 
     </form>
     <hr>
@@ -234,10 +313,20 @@
         dirty: {{studentForm.$dirty}}
     </p>
 
-    <p ng-show="studentForm.studentForm.$touched && studentForm.studentForm.$invalid" style="color:red;">
+    <p>
+        student name touched : {{studentForm.studentName.$touched}}
+    </p>
 
-        student name is required
+    <p>
+        student name valid : {{studentForm.studentName.$valid}}
+    </p>
 
+    <p>
+        student name invalid : {{studentForm.studentName.$invalid}}
+    </p>
+
+    <p>
+        student name error required: {{studentForm.studentName.$error.required}}
     </p>
 
 </body>
