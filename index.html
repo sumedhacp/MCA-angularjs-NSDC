@@ -164,6 +164,82 @@
 
     <p>ReadOnly Status : {{isReadOnly}}</p>
 
+    <hr>
+    <br><br>
+
+    <h2>Student Registration</h2>
+    <form name="studentForm">
+
+        <label>Student Name:</label>
+        <br>
+        <input type="text" ng-model="student.name" required>
+        <br><br>
+
+        <label>Email:</label>:</label>
+        <br>
+        <input type="text" ng-model="student.email" required>
+        <br><br>
+
+        
+        <label>Phone:</label>:</label>
+        <br>
+        <input type="tel" ng-model="student.phone" required>
+        <br><br>
+
+        
+        <label>Age:</label>:</label>
+        <br>
+        <input type="number" ng-model="student.age" required>
+        <br><br>
+
+        
+        <label>Department:</label>:</label>
+        <br>
+        <input type="text" ng-model="student.department" required>
+        <br><br>
+
+        
+        <label>Gender:</label>:</label>
+        <br>
+        <input type="text" ng-model="student.gender" required>
+        <br><br>
+
+
+        <label>Address:</label>:</label>
+        <br>
+        <input type="text" ng-model="student.address" required>
+        <br><br>
+
+        <button>Register Student </button>
+
+    </form>
+    <hr>
+    <br><br>
+
+    <h2>Form Status</h2>
+
+    <p>
+        valid: {{studentForm.$valid}}
+    </p>
+
+    <p>
+        invalid: {{studentForm.$invalid}}
+    </p>
+
+    <p>
+        pristine: {{studentForm.$pristine}}
+    </p>
+
+    <p>
+        dirty: {{studentForm.$dirty}}
+    </p>
+
+    <p ng-show="studentForm.studentForm.$touched && studentForm.studentForm.$invalid" style="color:red;">
+
+        student name is required
+
+    </p>
+
 </body>
 
 </html>
